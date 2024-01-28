@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "what-it-lacks",
+	"version": "${version}",
+	"name": "What It Lacks",
+	"description": "This mod adds a few things I's like to see in minecraft",
+	"authors": [
+		"MrCabbageStick"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/what-it-lacks/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"mrcabbagestick.whatitlacks.WhatItLacks"
+		],
+		"client": [
+			"mrcabbagestick.whatitlacks.WhatItLacksClient"
+		]
+	},
+	"mixins": [
+		"what-it-lacks.mixins.json",
+		{
+			"config": "what-it-lacks.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.14.22",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

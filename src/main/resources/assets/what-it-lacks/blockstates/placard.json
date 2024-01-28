@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": {"model": "what-it-lacks:block/placard"},
+        "facing=east": {"model": "what-it-lacks:block/placard", "y":  90},
+        "facing=south": {"model": "what-it-lacks:block/placard", "y":  180},
+        "facing=west": {"model": "what-it-lacks:block/placard", "y":  270}
+    }
+}
