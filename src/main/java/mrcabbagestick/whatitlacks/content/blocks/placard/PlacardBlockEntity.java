@@ -1,6 +1,8 @@
 package mrcabbagestick.whatitlacks.content.blocks.placard;
 
 import mrcabbagestick.whatitlacks.ModBlockEntities;
+import mrcabbagestick.whatitlacks.WhatItLacks;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -51,5 +53,13 @@ public class PlacardBlockEntity extends BlockEntity {
     @Override
     public NbtCompound toInitialChunkDataNbt() {
         return createNbt();
+    }
+
+    public void replaceItem(ItemStack item, BlockState state){
+        this.displayItem = item;
+        markDirty();
+
+        if(world != null)
+            world.updateListeners(getPos(), state, state, Block.NOTIFY_LISTENERS);
     }
 }

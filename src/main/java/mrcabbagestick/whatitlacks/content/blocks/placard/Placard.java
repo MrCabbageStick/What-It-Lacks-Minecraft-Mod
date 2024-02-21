@@ -7,17 +7,21 @@ import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -90,11 +94,12 @@ public class Placard extends Block implements BlockEntityProvider {
         if(target == null)
             return ActionResult.PASS;
 
-        if(!world.isClient()){
-            target.displayItem = usedItem;
-            world.updateListeners(pos, state, state, 0);
-        }
-        return ActionResult.SUCCESS;
+        if(world.isClient())
+            return ActionResult.SUCCESS;
+
+        target.replaceItem(usedItem.copy(), state);
+
+        return ActionResult.CONSUME;
     }
 
     @Nullable
